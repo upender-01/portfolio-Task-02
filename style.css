@@ -1,0 +1,486 @@
+/* =========================================
+   1. CUSTOM FONTS, COLORS & GLOBALS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #3b82f6;      /* Modern Blue */
+    --primary-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6); /* Blue to Purple */
+    --secondary-color: #1d4ed8;    
+    --text-color: #1e293b;         
+    --text-light: #64748b;
+    --bg-color: #f1f5f9;           /* Slightly cooler light background */
+    --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION (GLASSMORPHISM)
+   ========================================= */
+header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+}
+
+.logo {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Animated Underline on Hover */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   3. HERO SECTION (ANIMATED)
+   ========================================= */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at top left, #ffffff, var(--bg-color));
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    animation: fadeUp 1s ease-out forwards;
+}
+
+.hero-text {
+    flex: 1.2;
+}
+
+.hero-text h2 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Highlighted Text Gradient */
+.hero-text h2 span, .text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-light);
+}
+
+/* Upgraded Buttons */
+.btn {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: var(--white);
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    border-radius: 30px; /* Pill shape */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* Image Glow Effect */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.3;
+    z-index: -1;
+    animation: pulse 4s infinite alternate;
+}
+
+.hero-image img {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--white);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.03) rotate(2deg);
+}
+
+/* =========================================
+   4. GENERAL SECTIONS
+   ========================================= */
+section {
+    padding: 6rem 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--text-color);
+    margin-bottom: 3.5rem;
+    position: relative;
+}
+
+/* Fancy Section Heading Underline */
+section h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: var(--primary-gradient);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* About Section */
+.about {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about p {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   5. SKILLS SECTION (HOVER CARDS)
+   ========================================= */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.skill-box {
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top Border Highlight on Cards */
+.skill-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary-gradient);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+}
+
+.skill-box:hover::before {
+    transform: scaleX(1);
+}
+
+.skill-box:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+}
+
+.skill-box img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-box:hover img {
+    transform: scale(1.1);
+}
+
+.skill-box h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+}
+
+.skill-box ul {
+    list-style: none;
+    color: var(--text-light);
+}
+
+.skill-box ul li {
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+/* =========================================
+   6. PROFILES & CONTACT (MODERN UI)
+   ========================================= */
+.profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.profile-links a {
+    padding: 1rem 3rem;
+    background-color: var(--white);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-links a:hover {
+    background: var(--primary-gradient);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+    margin: 0 auto;
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.contact input, 
+.contact textarea {
+    padding: 1.2rem;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.contact input:focus, 
+.contact textarea:focus {
+    border-color: var(--primary-color);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.contact button {
+    padding: 1.2rem;
+    background: var(--primary-gradient);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.contact button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    text-align: center;
+    padding: 2.5rem 0;
+}
+
+/* =========================================
+   7. KEYFRAME ANIMATIONS
+   ========================================= */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.2; }
+    100% { transform: scale(1.1); opacity: 0.4; }
+}
+
+/* =========================================
+   8. RESPONSIVE DESIGN
+   ========================================= */
+@media screen and (max-width: 900px) {
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 3rem;
+    }
+
+    .hero-text h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero-image::before {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-image img {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+
+    .profile-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-links a {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .contact form {
+        padding: 2rem 1.5rem;
+    }
+}
