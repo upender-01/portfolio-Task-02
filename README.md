@@ -1,5 +1,3 @@
----
-
 # Styled Portfolio Website
 
 ## Project Overview
